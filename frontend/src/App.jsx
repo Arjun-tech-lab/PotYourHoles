@@ -4,6 +4,8 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import NavBar from "./Components/NavBar";
+import PotholeSeverity from "./Components/PotHoleSevrity"; // <-- AI Component
+
 import LandingPage from "./pages/LandingPage";
 import AboutUs from "./pages/Aboutus";
 import Services from "./pages/Services";
@@ -13,6 +15,7 @@ import SuccBooking from "./pages/SuccBooking";
 import Admin from "./pages/admin";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Appointment from "./pages/Appointment";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -64,7 +67,11 @@ const App = () => {
         <Route path="/Sucessfull" element={<SuccBooking />} />
         <Route path="/admin" element={<Admin user={user} />} />
         <Route path="/login" element={<Login onLogin={setUser} />} />
-         <Route path="/Signup" element={<Signup />} />
+        <Route path="/Signup" element={<Signup />} />
+        <Route path="/admin/appointment" element={<Appointment />} />
+
+        
+        <Route path="/potholeai" element={<PotholeSeverity />} />
       </Routes>
     </div>
   );
