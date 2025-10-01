@@ -8,10 +8,10 @@ const router = express.Router();
 router.post("/", upload.single("potholePhoto"), async (req, res) => {
   try {
     const appointment = new Appointment({
-      fullName: req.body.fullName,
-      phone: req.body.phone,
-      email: req.body.email,
-      date: req.body.date,
+      fullName: req.body.fullName || "",
+      phone: req.body.phone || "",
+      email: req.body.email || "",
+      date: req.body.date || null,
       address: req.body.address || {},
       potholePhoto: req.file ? req.file.path : null,
     });
@@ -26,35 +26,41 @@ router.post("/", upload.single("potholePhoto"), async (req, res) => {
 // ------------------- GET APPOINTMENTS (SEARCH + PAGINATION) -------------------
 router.get("/", async (req, res) => {
   try {
-    // Parse query params
     const search = req.query.search || "";
-    const searchField = req.query.searchField || ""; // e.g., "fullName", "email", "phone", "address.city"
-    const page = parseInt(req.query.page) > 0 ? parseInt(req.query.page) : 1;
-    const limit = parseInt(req.query.limit) > 0 ? parseInt(req.query.limit) : 5;
+    const searchField = req.query.searchField || ""; 
+    const page = Math.max(parseInt(req.query.page) || 1, 1);
+    const limit = Math.max(parseInt(req.query.limit) || 5, 1);
 
     let filter = {};
 
-    if (search && searchField) {
+    if (search) {
       const regex = new RegExp(search, "i"); // case-insensitive
-      // Only allow search in known fields for safety
-      const allowedFields = ["fullName", "email", "phone", "address.area", "address.city", "address.state", "address.postCode"];
-      if (allowedFields.includes(searchField)) {
-        filter[searchField] = regex;
+      if (searchField) {
+        const allowedFields = [
+          "fullName",
+          "email",
+          "phone",
+          "address.area",
+          "address.city",
+          "address.state",
+          "address.postCode",
+        ];
+        if (allowedFields.includes(searchField)) {
+          filter[searchField] = regex;
+        }
+      } else {
+        filter = {
+          $or: [
+            { fullName: regex },
+            { email: regex },
+            { phone: regex },
+            { "address.area": regex },
+            { "address.city": regex },
+            { "address.state": regex },
+            { "address.postCode": regex },
+          ],
+        };
       }
-    } else if (search) {
-      // fallback: search all fields if no searchField specified
-      const regex = new RegExp(search, "i");
-      filter = {
-        $or: [
-          { fullName: regex },
-          { email: regex },
-          { phone: regex },
-          { "address.area": regex },
-          { "address.city": regex },
-          { "address.state": regex },
-          { "address.postCode": regex },
-        ],
-      };
     }
 
     const total = await Appointment.countDocuments(filter);
@@ -75,7 +81,6 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
 
 // ------------------- GET SINGLE APPOINTMENT -------------------
 router.get("/:id", async (req, res) => {
