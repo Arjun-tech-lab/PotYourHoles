@@ -30,17 +30,20 @@ const Login = ({ onLogin }) => {
         <h2 className="text-2xl font-semibold text-center mb-4">Login to your account</h2>
 
         {/* Google Sign-In */}
-        <a
-          href="http://localhost:5001/auth/google"
-          className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-2 text-sm font-medium text-black hover:bg-gray-100 focus:ring-2 focus:ring-black focus:ring-offset-1 w-full justify-center mb-4"
-        >
-          <img
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            alt="Google"
-            className="w-5 h-5"
-          />
-          Sign in with Google
-        </a>
+<a
+  href="http://localhost:8080/oauth2/authorization/google"
+  target="_self"
+  rel="noopener noreferrer"
+  className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-5 py-2 text-sm font-medium text-black hover:bg-gray-100 focus:ring-2 focus:ring-black focus:ring-offset-1 w-full justify-center mb-4"
+>
+  <img
+    src="https://www.svgrepo.com/show/475656/google-color.svg"
+    alt="Google"
+    className="w-5 h-5"
+  />
+  Sign in with Google
+</a>
+
 
         <div className="flex items-center gap-2 py-2 text-sm text-gray-500">
           <div className="h-px w-full bg-gray-300"></div>
