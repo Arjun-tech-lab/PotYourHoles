@@ -1,3 +1,5 @@
+
+
 # 🕳️ PotYourHoles
 
 > **A citizen-first platform that uses AI to prioritize pothole repairs — because the government didn't respond to my complaints, so I built the solution myself.**
@@ -84,19 +86,18 @@ The model used is **MobileNet** — a lightweight, efficient convolutional neura
 ## 📸 Screenshots
 
 ### Landing Page
-> *(Add your screenshot here — drag and drop into the GitHub editor)*
 
-### Pothole Reporting Flow
-> *(Upload photo → AI result → book appointment)*
+<img width="849" height="451" alt="Screenshot 2026-05-08 at 1 58 31 AM" src="https://github.com/user-attachments/assets/022a374f-6cd8-443d-a81e-c4f09b2c24f4" />
 
 ### AI Severity Classification Result
-> *(Showing Low / Medium / High classification output)*
+<img width="851" height="425" alt="Screenshot 2026-05-08 at 2 01 00 AM" src="https://github.com/user-attachments/assets/8074ef25-e082-4360-8af9-d0600bb6a638" />
 
 ### Admin Dashboard
-> *(Sorted appointment queue with full customer details)*
+<img width="843" height="424" alt="Screenshot 2026-05-08 at 2 03 09 AM" src="https://github.com/user-attachments/assets/e784ea1b-5b52-4537-8b73-44b61a291f4c" />ment)*
 
 ### Services & Pricing Page
-> *(Add screenshot here)*
+<img width="1280" height="682" alt="Screenshot 2026-05-08 at 2 05 13 AM" src="https://github.com/user-attachments/assets/e3109e09-ac38-4297-90a5-fc535e24bdb5" />
+
 
 ---
 
